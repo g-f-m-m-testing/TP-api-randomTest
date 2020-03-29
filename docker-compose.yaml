@@ -1,0 +1,18 @@
+version: "3"
+services:
+    api-random-test:
+        container_name: api-random-test
+        image: node:latest
+        volumes:
+            - .:/app/code
+        ports:
+            - 3000:3000
+            - 56745:56745
+        command: bash -c "cd /app/code && npm i && npm run dev"
+        networks:
+            - testnet
+
+networks:
+    testnet:
+        external: 
+            name: testnet
