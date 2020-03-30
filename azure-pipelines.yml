@@ -1,36 +1,31 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
 
 trigger:
-    - development
-    
-    pool:
-      vmImage: 'ubuntu-latest'
-    
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
-      displayName: 'Install Node.js'
-    
-    - script: |
+- development
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UseNode@1
+  inputs:
+    checkLatest: true
+
+- script: |
         npm install
         npm run build
-      displayName: 'npm install and build'
-    
-    - task: CopyFiles@2
-      inputs:
-        contents: '**'
-        targetFolder: $(Build.ArtifactStagingDirectory)
-    
-    - task: UniversalPackages@0
-      inputs:
-        command: 'publish'
-        publishDirectory: '$(Build.ArtifactStagingDirectory)/dist'
-        feedsToUsePublish: 'internal'
-        vstsFeedPublish: 'a3b949f0-dbe6-41a7-a546-8afee57eabcf/97c2f583-df20-494a-a654-20d3884ac48c'
-        vstsFeedPackagePublish: 'api-randomtest'
-        versionOption: 'patch'
-        packagePublishDescription: 'no description'
+  displayName: 'npm install and build'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      echo "ls"
+      echo "pwd"
+      echo "##vso[task.setvariable variable=NAME]$(awk '/version/{print $2}' /home/vsts/work/1/s/package.json)
+      echo "##vso[task.setvariable variable=VERSION]$(awk '/version/{print $2}' /home/vsts/work/1/s/package.json)
