@@ -18,14 +18,3 @@ steps:
         npm install
         npm run build
   displayName: 'npm install and build'
-
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      
-      echo "bash -c "ls""
-      echo "bash -c "pwd""
-      echo "##vso[task.setvariable variable=NAME]$(awk '/version/{print $2}' /home/vsts/work/1/s/package.json)
-      echo "##vso[task.setvariable variable=VERSION]$(awk '/version/{print $2}' /home/vsts/work/1/s/package.json)

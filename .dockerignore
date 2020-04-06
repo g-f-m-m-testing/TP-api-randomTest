@@ -1,0 +1,10 @@
+# .git
+# *dockerfile*
+# *docker-compose*
+# node_modules
+# .devcontainer
+# .idea
+# .vscode
+# docs
+# coverage
+# src
