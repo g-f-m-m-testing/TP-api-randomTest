@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicationController
 metadata:
     name: node
     namespace: testing
@@ -10,6 +10,7 @@ spec:
             labels:
                 role: api-randomtest
         spec:
+            containers:
             containers:
             - name: api-randomtest
               image: tp-api-randomtest:#{Build.BuildId}#
