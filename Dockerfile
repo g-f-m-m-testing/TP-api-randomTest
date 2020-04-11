@@ -5,7 +5,9 @@ COPY . .
 RUN npm install 
 RUN npm run build
 
-FROM node:latest
+FROM alpine:latest
+RUN apk add --update nodejs
+RUN apk update && apk add bash
 WORKDIR /app
 COPY --from=0 /build/dist .
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

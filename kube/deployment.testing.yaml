@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+    name: node
+    namespace: testing
+spec:
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                role: api-randomtest
+        spec:
+            containers:
+            - name: api-randomtest
+              image: gfmmtesting.azurecr.io/g-f-m-m-testing/tp-api-randomtest:15
+              imagePullPolicy: IfNotPresent
+              ports:
+              - containerPort: 3000

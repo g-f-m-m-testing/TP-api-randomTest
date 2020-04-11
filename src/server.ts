@@ -4,7 +4,7 @@ const app = express();
 
 // No poner aquí las rutas a pelo, debemos importar el fichero index.ts del directorio routes, donde se cargarán todas las rutas de la API 
 app.get("/", (req, res) => {
-    console.log('Hello World')
+    console.log('Hello World, Im runing on Kubernetes and deployed via Azure Pipelines')
     res.send("Hello World")
 })
 
