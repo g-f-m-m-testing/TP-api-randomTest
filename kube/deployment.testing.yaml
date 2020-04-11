@@ -13,7 +13,7 @@ spec:
             containers:
             containers:
             - name: api-randomtest
-              image: tp-api-randomtest:#{Build.BuildId}#
+              image: gfmmtesting.azurecr.io/g-f-m-m-testing/tp-api-randomtest:#{Build.BuildId}#
               imagePullPolicy: IfNotPresent
               ports:
               - containerPort: 3000
